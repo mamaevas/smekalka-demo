@@ -1,0 +1,116 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="create-table-schema-01" author="mamaevas">
+        <createTable tableName="track">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="name" type="varchar"/>
+            <column name="description" type="varchar"/>
+            <column name="length_id" type="bigint"/>
+        </createTable>
+
+        <createTable tableName="car">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="code" type="varchar"/>
+            <column name="transmission_id" type="int"/>
+            <column name="ai_id" type="int"/>
+            <column name="max_speed_id" type="bigint"/>
+        </createTable>
+
+        <createTable tableName="measure">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="unit_id" type="bigint"/>
+            <column name="value" type="double"/>
+        </createTable>
+
+        <createTable tableName="unit">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="name" type="varchar">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="transmission">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="name" type="varchar">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="ai">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="code" type="varchar">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="track_car">
+            <column name="track_id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="car_id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+
+        <addAutoIncrement tableName="track" columnName="id"/>
+        <addAutoIncrement tableName="car" columnName="id"/>
+        <addAutoIncrement tableName="measure" columnName="id"/>
+        <addAutoIncrement tableName="ai" columnName="id"/>
+        <addAutoIncrement tableName="unit" columnName="id"/>
+        <addAutoIncrement tableName="transmission" columnName="id"/>
+
+        <addForeignKeyConstraint baseTableName="track_car"
+                                 baseColumnNames="track_id"
+                                 constraintName="fk_to_track_id"
+                                 referencedTableName="track"
+                                 referencedColumnNames="id"
+                                 onDelete="CASCADE"/>
+
+        <addForeignKeyConstraint baseTableName="track_car"
+                                 baseColumnNames="car_id"
+                                 constraintName="fk_to_car"
+                                 referencedTableName="car"
+                                 referencedColumnNames="id"
+                                 onDelete="CASCADE"/>
+
+        <addForeignKeyConstraint baseTableName="car" baseColumnNames="transmission_id"
+                                 constraintName="fk_to_transmission_id"
+                                 referencedTableName="transmission"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="car" baseColumnNames="ai_id" constraintName="fk_to_ai_id"
+                                 referencedTableName="ai"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="track" baseColumnNames="length_id" constraintName="fk_to_measure_id"
+                                 referencedTableName="measure"
+                                 referencedColumnNames="id"
+                                 onDelete="CASCADE"/>
+
+        <addForeignKeyConstraint baseTableName="car" baseColumnNames="max_speed_id" constraintName="fk_to_measure_id"
+                                 referencedTableName="measure"
+                                 referencedColumnNames="id"
+                                 onDelete="CASCADE"/>
+
+        <addForeignKeyConstraint baseTableName="measure" baseColumnNames="unit_id" constraintName="fk_to_unit_id"
+                                 referencedTableName="unit"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>
