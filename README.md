@@ -6,6 +6,9 @@
 4. App UI wil be available in `http://localhost:8080`   
 5. You can change app properties in `application.properties` and `application-dev.properties`  
 6. By default app running with dev profile  
+7. At UI `chose file` with test JSON file (such as shown below) and save it by click on `save` button  
+8. Read data from database by click on `read` button  
+9. Clean form content by click on `clean` button  
   
   
 Task:  
