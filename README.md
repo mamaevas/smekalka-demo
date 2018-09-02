@@ -1,7 +1,7 @@
 <h2>Test app for smekalka.</h2>  
   
 1. You need to create postgresql database with name `smekalka-dev`  
-2. Database creates automaticaly when app is running  
+2. Database creates automaticaly when app is running (`public` schema is used by default)
 3. Run application:`mvn spring-boot: run`  
 4. App UI wil be available in `http://localhost:8080`   
 5. You can change app properties in `application.properties` and `application-dev.properties`  
