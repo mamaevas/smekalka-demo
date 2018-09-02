@@ -13,9 +13,9 @@
   
 Task:  
 It is necessary to implement a web application that allows:    
-1. Enter on the web form the data from the json file (it is in the application);  
-2. Save data to the vault by clicking on the button on the form;  
-3. Display the data stored in the vault on the form so that you can repeat step 1.  
+1. Enter on the web form the data from the json file  
+2. Save data to the database by clicking on the button on the form;  
+3. Display the data stored in the database on the form so that you can repeat step 1.  
 4. Mandatory requirements: embedded micro container (jetty, tomcat), postgres, maven, spring.  
 5. In addition to these, you can use those tools that you think are necessary for the correct execution of the task.  
   
